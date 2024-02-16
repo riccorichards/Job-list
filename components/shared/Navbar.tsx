@@ -11,9 +11,17 @@ import { useState } from "react";
 const Navbar = () => {
   const [openMobileMenu, setOpenMobileMenu] = useState<boolean>(false);
 
+  const smoothlyScroll = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const handleOpenMobileMenu = () => {
     setOpenMobileMenu(!openMobileMenu);
   };
+
   return (
     <nav className="py-5 bg-transparent relative top-0 z-10 w-full">
       <div className="max-w-[1450px] w-[90%] mx-auto flex justify-between items-center">
@@ -29,9 +37,13 @@ const Navbar = () => {
 
         <ul className="flex gap-16 items-center max-md:hidden">
           {navLinks.map((link, index) => (
-            <Link href={link.route} key={index}>
-              <li>{link.name}</li>
-            </Link>
+            <li
+              key={index}
+              onClick={() => smoothlyScroll(link.routeId)}
+              className="cursor-pointer"
+            >
+              {link.name}
+            </li>
           ))}
         </ul>
 
@@ -51,7 +63,7 @@ const Navbar = () => {
             <ul className="md:hidden bg-orange-500 absolute top-14 right-5 px-4 py-6 text-center text-white rounded-md flex flex-col gap-3 shadow-md">
               {navLinks.map((link, index) => (
                 <Link
-                  href={link.route}
+                  href={link.routeId}
                   key={index}
                   onClick={() => setOpenMobileMenu(false)}
                 >
