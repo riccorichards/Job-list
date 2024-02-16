@@ -1,6 +1,11 @@
+import { jobType } from "@/types/job.types";
 import SearchForm from "./SearchForm";
 
-const Hero = () => {
+interface JobsType {
+  jobs: jobType[];
+}
+
+const Hero = ({ jobs }: JobsType) => {
   return (
     <div
       id="home"
@@ -17,7 +22,7 @@ const Hero = () => {
             100,000 jobs listed here! Your dream job is waiting
           </span>
         </div>
-        <SearchForm />
+        <SearchForm jobs={jobs} />
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ model Job {
   id String @id @default(uuid())
   name String
   description String
-  salary Float @default(0)
+  salary Float? @default(0)
   author String
   workType String
   image String
