@@ -8,7 +8,7 @@ interface DynamicProps {
 }
 
 const getData = async (id: string) => {
-  const res = await fetch(`http://localhost:3000/api/post/${id}`, {
+  const res = await fetch(`https://job-list-mocha.vercel.app/api/post/${id}`, {
     cache: "no-store",
   });
 
@@ -18,6 +18,7 @@ const getData = async (id: string) => {
 
   return res.json();
 };
+
 const page = async ({ params }: DynamicProps) => {
   const { id } = params;
   const job = await getData(id);
@@ -44,9 +45,7 @@ const page = async ({ params }: DynamicProps) => {
                     <li>
                       <div>
                         <p>Employment Type:</p>
-                        <span className="font-medium">
-                          {job.workType}
-                        </span>
+                        <span className="font-medium">{job.workType}</span>
                       </div>
                     </li>
                     <li className="mt-4">
